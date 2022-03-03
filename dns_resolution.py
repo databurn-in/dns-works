@@ -23,7 +23,7 @@ def make_dns_request(dns_server, dns_port, domain_name):
 # START HERE
 ################################### STEP-1
 '''
-Every DNS client needs to know a list of root servers and their IP addresses.
+Every DNS client (a DNS resolver or a recursive DNS server) needs to know a list of root nameservers and their IP addresses.
 Root servers show the clients the next path to take.
 There are a bunch of root servers. 
 Find out more about the root servers here: https://en.wikipedia.org/wiki/Root_name_server#Root_server_addresses

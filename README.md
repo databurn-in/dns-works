@@ -65,7 +65,7 @@ And `/run/systemd/resolve/stub-resolv.conf` file belongs to `systemd-resolved`! 
 
 If I don't want to use the `systemd-resolved` service for my DNS queries, I can remove the symbolic link on the `/etc/resolv.conf` file, and make it a regular file and put in whichever DNS server IP address I want there. 
 
-But how does the `systemd-resolved` service (or it's equivalent service on Windows) respond with the correct IP address? 
+But how does the `systemd-resolved` service (or it's equivalent service on Windows) respond with the correct IP address of the domain name that we requested? 
 
 **Step 1:** 
 `systemd-resolved` first checks the `/etc/hosts` file to see if the queried name is present in that file. The DNS query answer for "localhost" is usually found in this file (which, by default, is 127.0.0.1).
@@ -209,13 +209,11 @@ cred.club. 14 IN A 13.32.33.210
 
 Notice that `AUTHORITY` section is empty in the cached output. This caching is done on 192.168.43.22 local DNS server.
 
-Just as `systemd-reserved` caches the DNS responses, the *recursive* DNS servers cache the DNS query responses.
-
-So, let's talk about this chain. 
+Just as `systemd-reserved` caches the DNS responses, the *recursive* DNS servers cache the DNS query responses as well.
 
 **Step 4:**
 
-What happens when the DNS query reaches the local network DNS server? In my example, 192.168.43.112 server? And what was that `AUTHORITY` section in the DNS query response in the previous example?
+So, what happens when our DNS query reaches the local network DNS server? In my example, 192.168.43.112 server? How does it resolve the domain name? And what was that `AUTHORITY` section in the DNS query response in the previous example?
 
 To understand how the local network DNS server resolves a domain name, go through the explanation given in [dns_resolution.py](/dns_resolution.py)
 
